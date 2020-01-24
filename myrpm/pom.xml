@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>Rohit_Company</groupId>
+  <artifactId>myrpm</artifactId>
+  <version>1.0.0</version>
+
+  <name>myrpm</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!--pluginManagement--><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+	    <plugins>
+			    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>rpm-maven-plugin</artifactId>
+	<version>2.2.0</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>generate-rpm</id>
+            <phase>package</phase>
+            <goals>
+              <goal>rpm</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <license>Jain Co.PVT LTD 2020</license>
+          <distribution>Trash 2020</distribution>
+          <group>Application/Collectors</group>
+          <description>Jain Package</description>
+          <!--icon>src/main/resources/icon.gif</icon-->
+          <packager>R1A2C</packager>
+          <prefix>/usr/local</prefix>
+          <changelogFile>src/changelog</changelogFile>
+          <defineStatements>
+            <defineStatement>_unpackaged_files_terminate_build 0</defineStatement>
+          </defineStatements>
+          <mappings>
+            <mapping>
+		    <directory>/jain/product_sun_shine/bin</directory>
+              <filemode>755</filemode>
+              <username>rohit</username>
+              <groupname>rohit</groupname>
+              <sources>
+                <source>
+                  <location>src/main/scripts/</location>
+                </source>
+              </sources>
+            </mapping>
+            <mapping>
+              <directory>/jain/product_sun_shine/etc</directory>
+              <documentation>true</documentation>
+              <filemode>755</filemode>
+              <username>rohit</username>
+              <groupname>rohit</groupname>
+              <sources>
+                <source>
+                  <location>src/main/resources/</location>
+                </source>
+              </sources>
+               </mapping>
+	       <mapping>
+              <directory>/jain/product_sun_shine/lib</directory>
+              <documentation>true</documentation>
+              <filemode>755</filemode>
+              <username>rohit</username>
+              <groupname>rohit</groupname>
+              <sources>
+                <source>
+                  <location>src/main/python/</location>
+                </source>
+              </sources>
+            </mapping>
+         </mappings>
+	    <preinstallScriptlet>
+            <script>echo "installing ${project.name} now on `date`"</script>
+          </preinstallScriptlet>
+          <!--postinstallScriptlet>
+            <scriptFile>src/main/scripts/postinstall</scriptFile>
+            <fileEncoding>utf-8</fileEncoding>
+            <filter>true</filter>
+          </postinstallScriptlet-->
+    </configuration>
+</plugin>
+        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+        <!--plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin-->
+        <!--plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin-->
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+      </plugins>
+    <!--/pluginManagement-->
+  </build>
+</project>
