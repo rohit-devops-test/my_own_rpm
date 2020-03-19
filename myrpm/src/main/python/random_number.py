@@ -5,5 +5,6 @@ print(random.random())
 print(random.random())
 print(random.random())
 
-# Producing error 
-produce error
+
+name="Rohit"
+number="1300000"
